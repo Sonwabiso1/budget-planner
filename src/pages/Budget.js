@@ -6,6 +6,7 @@ function Budget() {
   const [expenses, setExpenses] = useState([]);
   const [expense, setExpense] = useState('');
   const [expenseAmount, setExpenseAmount] = useState(0);
+  const [editingIndex, setEditingIndex] = useState(null);  // To track which expense is being edited
 
   // Load from localStorage when component mounts
   useEffect(() => {
@@ -27,12 +28,36 @@ function Budget() {
 
   // Add a new expense to the list
   const addExpense = () => {
-  if (expense && expenseAmount > 0) {
-    setExpenses([...expenses, { name: expense, amount: parseFloat(expenseAmount) }]);  // Use parseFloat
-    setExpense('');  
-    setExpenseAmount(0);  
-  }
-};
+    if (expense && expenseAmount > 0) {
+      if (editingIndex !== null) {
+        // Editing existing expense
+        const updatedExpenses = expenses.map((exp, index) =>
+          index === editingIndex ? { name: expense, amount: parseFloat(expenseAmount) } : exp
+        );
+        setExpenses(updatedExpenses);
+        setEditingIndex(null); // Exit edit mode
+      } else {
+        // Add new expense
+        setExpenses([...expenses, { name: expense, amount: parseFloat(expenseAmount) }]);
+      }
+      setExpense('');
+      setExpenseAmount(0);
+    }
+  };
+
+  // Delete an expense
+  const deleteExpense = (index) => {
+    const updatedExpenses = expenses.filter((_, i) => i !== index);
+    setExpenses(updatedExpenses);
+  };
+
+  // Edit an expense
+  const editExpense = (index) => {
+    const exp = expenses[index];
+    setExpense(exp.name);
+    setExpenseAmount(exp.amount);
+    setEditingIndex(index); // Enter edit mode for the selected expense
+  };
 
   // Calculate total expenses
   const totalExpenses = expenses.reduce((total, item) => total + item.amount, 0);
@@ -46,14 +71,14 @@ function Budget() {
   return (
     <div>
       <h1 className="text-xl mb-4">Budget Planner for {currentMonth}</h1>
-      
+
       <div className="mb-4">
         <label className="block mb-2">Income:</label>
         <input
           type="number"
           className="border p-2 w-1/3 text-black"
           value={income}
-          onChange={(e) => setIncome(Number(e.target.value))}
+          onChange={(e) => setIncome(parseFloat(e.target.value))}
           placeholder="Enter your total income"
         />
       </div>
@@ -64,7 +89,7 @@ function Budget() {
           type="number"
           className="border p-2 w-1/3 text-black"
           value={savings}
-          onChange={(e) => setSavings(Number(e.target.value))}
+          onChange={(e) => setSavings(parseFloat(e.target.value))}
           placeholder="Enter savings amount"
         />
       </div>
@@ -77,6 +102,7 @@ function Budget() {
           value={expense}
           onChange={(e) => setExpense(e.target.value)}
           placeholder="Enter expense name"
+          autoComplete="off"  // Disable dropdown suggestions
         />
       </div>
 
@@ -86,19 +112,25 @@ function Budget() {
           type="number"
           className="border p-2 w-1/3 text-black"
           value={expenseAmount}
-          onChange={(e) => setExpenseAmount(Number(e.target.value))}
+          onChange={(e) => setExpenseAmount(parseFloat(e.target.value))}
           placeholder="Enter expense amount"
         />
       </div>
 
       <button onClick={addExpense} className="bg-white text-nedbankGreen px-4 py-2">
-        Add Expense
+        {editingIndex !== null ? 'Update Expense' : 'Add Expense'}
       </button>
 
       <ul className="mt-4">
         {expenses.map((exp, index) => (
           <li key={index} className="p-2 border-b">
             {exp.name}: R{exp.amount.toFixed(2)}
+            <button onClick={() => editExpense(index)} className="ml-4 bg-blue-500 text-white px-2 py-1">
+              Edit
+            </button>
+            <button onClick={() => deleteExpense(index)} className="ml-2 bg-red-500 text-white px-2 py-1">
+              Delete
+            </button>
           </li>
         ))}
       </ul>
