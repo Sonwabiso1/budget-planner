@@ -27,12 +27,12 @@ function Budget() {
 
   // Add a new expense to the list
   const addExpense = () => {
-    if (expense && expenseAmount > 0) {
-      setExpenses([...expenses, { name: expense, amount: Number(expenseAmount) }]);
-      setExpense('');
-      setExpenseAmount(0);
-    }
-  };
+  if (expense && expenseAmount > 0) {
+    setExpenses([...expenses, { name: expense, amount: parseFloat(expenseAmount) }]);  // Use parseFloat
+    setExpense('');  
+    setExpenseAmount(0);  
+  }
+};
 
   // Calculate total expenses
   const totalExpenses = expenses.reduce((total, item) => total + item.amount, 0);
