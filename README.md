@@ -1,70 +1,76 @@
-# Getting Started with Create React App
+# Budget Planner
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a simple budget planner built with React and TailwindCSS. The application allows users to input their income, savings, and expenses for a given month, and then calculates the remaining balance. All the data is saved in the browser's local storage, so your budget persists across sessions.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Add and track multiple expenses
+- Input income and savings
+- Automatically calculates total expenses and remaining balance
+- Displays the current month
+- Saves data in local storage for persistence
+- Responsive design using TailwindCSS
 
-### `npm start`
+## Technologies Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **React**: A JavaScript library for building user interfaces.
+- **TailwindCSS**: A utility-first CSS framework for styling.
+- **React Router**: For navigating between pages (home and budget pages).
+- **Local Storage**: Used to save the budget data in the browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Installation
 
-### `npm test`
+1. Clone the repository to your local machine:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    ```bash
+    git clone https://github.com/your-username/budget-planner.git
+    ```
 
-### `npm run build`
+2. Navigate into the project directory:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    ```bash
+    cd budget-planner
+    ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. Install the dependencies:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    ```bash
+    npm install
+    ```
 
-### `npm run eject`
+4. Start the development server:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+    ```bash
+    npm start
+    ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+5. Open your browser and go to `http://localhost:3000` to view the app.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## TailwindCSS Setup
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+The project uses TailwindCSS for styling. If you want to customize the styles or add new utility classes, you can do so in the `tailwind.config.js` file.
 
-## Learn More
+Tailwind has already been configured with the custom **Nedbank Green** color (`#007a33`), which is applied throughout the app.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Usage
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. **Income**: Enter your total income for the month.
+2. **Savings**: Input how much you plan to save.
+3. **Expenses**: Add expenses with names and amounts. Each expense is listed in the budget.
+4. **Remaining Balance**: The app will automatically calculate the remaining balance after accounting for your total expenses and savings.
+5. **Current Month**: The app automatically displays the month you're budgeting for.
 
-### Code Splitting
+## Deployed Version
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+You can access the live version of the app [here](#).
 
-### Analyzing the Bundle Size
+## Future Enhancements
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Add the ability to edit and delete expenses.
+- Introduce budget categories (e.g., food, transportation, rent).
+- Option to switch between different months and track budget history.
+- Graphical display of expenses vs. income.
 
-### Making a Progressive Web App
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
