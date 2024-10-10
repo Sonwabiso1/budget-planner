@@ -62,7 +62,7 @@ Tailwind has already been configured with the custom **Nedbank Green** color (`#
 
 ## Deployed Version
 
-You can access the live version of the app [here](#).
+You can access the live version of the app [here](https://budgetplannerwebapp.netlify.app).
 
 ## Future Enhancements
 
